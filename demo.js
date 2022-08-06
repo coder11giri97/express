@@ -1,7 +1,13 @@
-console.log('a');
+const http = require('http');
+const server = http.createServer((req,res)=>{
+  console.log(req.url, req.method, req.headers);
 
-console.log('b');
+  res.setHeader('Content-Type', 'text/html');
+  res.write('<html>');
+  res.write('<head><title>my first page</title></head>');
+  res.write('<body><h1>hello from my nodejs server</h1></body>');
+  res.write('</html>');
+  res.end();
+})
 
-setTimeOut(() => console.log('c'), 3000)
-
-console.log('d');
+server.listen(3000);
